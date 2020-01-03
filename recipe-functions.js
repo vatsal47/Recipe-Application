@@ -26,7 +26,7 @@ const removeRecipe = function (id) {
 
 const generateRecipeDOM = function (recipe) {
     const recipeEl = document.createElement('div')
-    const textEl = document.createElement('span')
+    const textEl = document.createElement('a')
     const button = document.createElement('button')
 
     button.textContent = 'Remove'
@@ -42,6 +42,8 @@ const generateRecipeDOM = function (recipe) {
     } else {
         textEl.textContent = 'Unnamed Recipe'
     }
+
+    textEl.setAttribute('href', `/edit.html#${recipe.id}`)
 
     recipeEl.appendChild(textEl)
 

@@ -7,14 +7,16 @@ const filters = {
 renderRecipes(recipes, filters)
 
 document.querySelector('#add-recipe').addEventListener('click',(e) => {
+    const id = uuidv4()
+
     recipes.push({
-        id: uuidv4(),
+        id: id,
         title: '',
         ingredients: '',      
         process: ''
     })
     saveRecipes(recipes)
-    renderRecipes(recipes, filters)
+    location.assign(`/edit.html#${id}`)
 })
 
 document.querySelector('#search-text').addEventListener('input', function(e) {
