@@ -1,9 +1,8 @@
+// Get id from URL hash
 const recipeId = location.hash.substring(1)
-let recipes = getSavedRecipes()
 
-let recipe = recipes.find(function (recipe) {
-    return recipe.id === recipeId
-})
+let recipes = getSavedRecipes()
+let recipe = recipes.find(recipe => recipe.id === recipeId)
 
 if (recipe === undefined) {
     location.assign('/index.html')
@@ -11,33 +10,34 @@ if (recipe === undefined) {
 
 const titleElement = document.querySelector('#recipe-title') 
 titleElement.value = recipe.title
-titleElement.addEventListener('input', function (e) {
+titleElement.addEventListener('input', (e) => {
     recipe.title = e.target.value
     saveRecipes(recipes)
 })
 
 const ingredientsElement = document.querySelector('#ingredients')
 ingredientsElement.value = recipe.ingredients
-ingredientsElement.addEventListener('input', function (e) {
+ingredientsElement.addEventListener('input', (e) => {
     recipe.ingredients = e.target.value
     saveRecipes(recipes)
 })
 
 const processElement  = document.querySelector('#recipe-process')
 processElement.value = recipe.process
-processElement.addEventListener('input', function (e) {
+processElement.addEventListener('input', (e) => {
     recipe.process = e.target.value
     saveRecipes(recipes)
 })
 
 const removeElement  = document.querySelector('#remove-recipe')
-removeElement.addEventListener('click', function (e) {
+removeElement.addEventListener('click', () => {
     removeRecipe(recipe.id)
     saveRecipes(recipes)
     location.assign('./index.html')
 })
 
-window.addEventListener('storage', function (e) {
+// For data-syncing
+window.addEventListener('storage', (e) => {
     if (e.key === 'recipes') {
         notes = JSON.parse(e.newValue)
     }

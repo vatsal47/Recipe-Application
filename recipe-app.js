@@ -19,12 +19,13 @@ document.querySelector('#add-recipe').addEventListener('click',(e) => {
     location.assign(`/edit.html#${id}`)
 })
 
-document.querySelector('#search-text').addEventListener('input', function(e) {
+document.querySelector('#search-text').addEventListener('input', (e) => {
     filters.searchText = e.target.value
     renderRecipes(recipes, filters)
 })
 
-window.addEventListener('storage', function (e) {
+// For data-syncing
+window.addEventListener('storage', (e) => {
     if (e.key === 'recipes') {
         recipes = JSON.parse(e.newValue)
         renderRecipes(recipes, filters)
