@@ -15,13 +15,21 @@ const saveRecipes = function (notes) {
 }
 
 const generateRecipeDOM = function (recipe) {
-    const recipeEl = document.createElement('p')
+    const recipeEl = document.createElement('div')
+    const textEl = document.createElement('span')
+    const button = document.createElement('button')
+
+    button.textContent = 'Remove'
+    recipeEl.appendChild(button)
+    
 
     if (recipe.title.length > 0) {
-        recipeEl.textContent = recipe.title
+        textEl.textContent = recipe.title
     } else {
-        recipeEl.textContent = 'Unnamed Recipe'
+        textEl.textContent = 'Unnamed Recipe'
     }
+
+    recipeEl.appendChild(textEl)
 
     return recipeEl
 }
