@@ -6,13 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link href="style.css" rel="stylesheet">
 </head>
 
 <body>
-    <h1>Recipe-App</h1>
-    <input id='search-text' type='text' placeholder='Search'>
-    <div id='recipes'></div>
-    <button id='add-recipe'>Add Recipe</button>
+    <div class="header">
+        <div class="container">
+            <h1 class="header__title">Recipe-App</h1>
+        </div>
+    </div>
+
+    <div class="actions">
+        <div class="actions__container">
+            <input id='search-text' type='text' class='input' placeholder='Search'>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id='recipes'></div>
+        <button id='add-recipe' class='button'>Add Recipe</button>
+    </div>
     <script src='http://wzrd.in/standalone/uuid%2Fv4@latest'></script>
     <script src='recipe-functions.js'></script>
     <script src='recipe-app.js'></script>
