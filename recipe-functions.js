@@ -10,8 +10,18 @@ const getSavedRecipes = function () {
     }
 }
 
-const saveRecipes = function (notes) {
+const saveRecipes = function () {
     localStorage.setItem('recipes', JSON.stringify(recipes))
+}
+
+const removeRecipe = function (id) {
+    const recipeIndex = recipes.findIndex(function (recipe) {
+        return recipe.id === id    
+    })
+
+    if (recipeIndex > -1) {
+        recipes.splice(recipeIndex, 1)
+    }
 }
 
 const generateRecipeDOM = function (recipe) {
@@ -21,7 +31,11 @@ const generateRecipeDOM = function (recipe) {
 
     button.textContent = 'Remove'
     recipeEl.appendChild(button)
-    
+    button.addEventListener('click',function(e) {
+        removeRecipe(recipe.id)
+        saveRecipes(recipes)
+        renderRecipes(recipes, filters)
+    })
 
     if (recipe.title.length > 0) {
         textEl.textContent = recipe.title

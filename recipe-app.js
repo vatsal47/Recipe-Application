@@ -8,11 +8,12 @@ renderRecipes(recipes, filters)
 
 document.querySelector('#add-recipe').addEventListener('click',(e) => {
     recipes.push({
+        id: uuidv4(),
         title: '',
         ingredients: '',      
         process: ''
     })
-    getSavedRecipes(recipes)
+    saveRecipes(recipes)
     renderRecipes(recipes, filters)
 })
 
