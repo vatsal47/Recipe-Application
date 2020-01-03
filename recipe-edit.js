@@ -1,7 +1,7 @@
 const recipeId = location.hash.substring(1)
-const recipes = getSavedRecipes()
+let recipes = getSavedRecipes()
 
-const recipe = recipes.find(function (recipe) {
+let recipe = recipes.find(function (recipe) {
     return recipe.id === recipeId
 })
 
@@ -37,3 +37,20 @@ removeElement.addEventListener('click', function (e) {
     location.assign('./index.html')
 })
 
+window.addEventListener('storage', function (e) {
+    if (e.key === 'recipes') {
+        notes = JSON.parse(e.newValue)
+    }
+
+    recipe = recipes.find(function (recipe) {
+        return recipe.id === recipeId
+    })
+    
+    if (recipe === undefined) {
+        location.assign('/index.html')
+    }
+
+    titleElement.value = recipe.title
+    ingredientsElement.value = recipe.ingredients
+    processElement.value = recipe.process
+})

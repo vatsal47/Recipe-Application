@@ -23,3 +23,10 @@ document.querySelector('#search-text').addEventListener('input', function(e) {
     filters.searchText = e.target.value
     renderRecipes(recipes, filters)
 })
+
+window.addEventListener('storage', function (e) {
+    if (e.key === 'recipes') {
+        recipes = JSON.parse(e.newValue)
+        renderRecipes(recipes, filters)
+    }
+})
